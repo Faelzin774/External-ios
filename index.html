@@ -1,154 +1,55 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html>
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Faelzin Store</title>
     <style>
-        * {
+        body {
             margin: 0;
             padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
             min-height: 100vh;
-            background: linear-gradient(135deg, #0a0a0a, #1a0000);
+            background: #000;
             display: flex;
             justify-content: center;
             align-items: center;
-            font-family: 'Impact', 'Segoe UI', system-ui;
-            position: relative;
-            overflow: hidden;
+            font-family: Arial, sans-serif;
         }
-
-        /* Fundo animado com partículas */
-        canvas {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: 0;
-        }
-
-        .card {
-            position: relative;
-            z-index: 10;
+        .container {
             text-align: center;
-            background: rgba(0,0,0,0.6);
-            backdrop-filter: blur(10px);
-            padding: 50px 40px;
-            border-radius: 50px;
-            border: 1px solid rgba(255,0,0,0.5);
-            box-shadow: 0 0 50px rgba(255,0,0,0.3);
         }
-
-        .store-name {
-            font-size: 5rem;
-            color: #ff0000;
-            text-shadow: 0 0 10px red, 0 0 20px darkred, 0 0 30px #ff0000;
-            animation: pulse 0.8s infinite alternate;
-            letter-spacing: 5px;
-            margin-bottom: 40px;
+        h1 {
+            font-size: 80px;
+            color: red;
+            text-shadow: 0 0 20px red;
+            margin-bottom: 50px;
         }
-
-        @keyframes pulse {
-            0% { text-shadow: 0 0 5px red; opacity: 0.9; }
-            100% { text-shadow: 0 0 25px #ff4444, 0 0 35px red; opacity: 1; }
-        }
-
-        .btn {
-            background: linear-gradient(135deg, #00ff44, #008822);
-            border: none;
-            padding: 20px 50px;
-            font-size: 2rem;
-            font-weight: bold;
+        button {
+            background: green;
             color: white;
-            border-radius: 60px;
+            font-size: 40px;
+            padding: 20px 50px;
+            border: none;
+            border-radius: 50px;
             cursor: pointer;
-            box-shadow: 0 8px 0 #004400, 0 5px 30px rgba(0,255,0,0.5);
-            transition: 0.07s linear;
-            text-transform: uppercase;
-            font-family: monospace;
+            box-shadow: 0 5px 15px rgba(0,255,0,0.5);
         }
-
-        .btn:active {
-            transform: translateY(4px);
-            box-shadow: 0 4px 0 #004400;
-        }
-
-        @media (max-width: 550px) {
-            .store-name { font-size: 2.8rem; }
-            .btn { font-size: 1.3rem; padding: 15px 30px; }
+        button:active {
+            transform: scale(0.95);
         }
     </style>
 </head>
 <body>
+    <div class="container">
+        <h1>FAELZIN STORE</h1>
+        <button id="btn">ABRIR PAINEL</button>
+    </div>
 
-<canvas id="particlesCanvas"></canvas>
-
-<div class="card">
-    <div class="store-name">FAELZIN STORE</div>
-    <button class="btn" id="openBtn">ABRIR PAINEL</button>
-</div>
-
-<script>
-    // Fundo de partículas animado
-    const canvas = document.getElementById('particlesCanvas');
-    const ctx = canvas.getContext('2d');
-    
-    function resizeCanvas() {
-        canvas.width = window.innerWidth;
-        canvas.height = window.innerHeight;
-    }
-    resizeCanvas();
-    window.addEventListener('resize', resizeCanvas);
-    
-    const particles = [];
-    for (let i = 0; i < 100; i++) {
-        particles.push({
-            x: Math.random() * canvas.width,
-            y: Math.random() * canvas.height,
-            radius: Math.random() * 3 + 1,
-            speedX: (Math.random() - 0.5) * 1.5,
-            speedY: (Math.random() - 0.5) * 1.5,
-            color: `rgba(255, ${Math.random() * 100}, ${Math.random() * 50}, ${Math.random() * 0.5 + 0.2})`
-        });
-    }
-    
-    function animateParticles() {
-        ctx.clearRect(0, 0, canvas.width, canvas.height);
-        for (let p of particles) {
-            ctx.beginPath();
-            ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
-            ctx.fillStyle = p.color;
-            ctx.fill();
-            
-            p.x += p.speedX;
-            p.y += p.speedY;
-            
-            if (p.x < 0) p.x = canvas.width;
-            if (p.x > canvas.width) p.x = 0;
-            if (p.y < 0) p.y = canvas.height;
-            if (p.y > canvas.height) p.y = 0;
-        }
-        requestAnimationFrame(animateParticles);
-    }
-    animateParticles();
-    
-    // Botão que abre o esquema com.FFExternal.1711Cheat
-    const btn = document.getElementById('openBtn');
-    
-    btn.addEventListener('click', function() {
-        // Esquema de URL para iOS/Android
-        window.location.href = "com.FFExternal.1711Cheat://";
-        
-        // Fallback: se não abrir, tenta sem os //
-        setTimeout(() => {
+    <script>
+        document.getElementById('btn').onclick = function() {
+            // EXATAMENTE ISSO QUE VOCÊ PEDIU
             window.location.href = "com.FFExternal.1711Cheat";
-        }, 100);
-    });
-</script>
+        }
+    </script>
 </body>
 </html>
